@@ -14,7 +14,9 @@ async function pokemonDetails(pokemonsTeam): Promise<any> {
           const responseData = response.data;
           const {name, id, cries:{latest}, sprites:{front_default}, types} = responseData;
           const typeNames = types.map((type) => type.type.name);
-          pokeInfo.push({name, id, latest, front_default, typeNames})
+          const type=typeNames[0];
+          const secondType = typeNames[1] ? typeNames[1] : null;
+          pokeInfo.push({name, id, latest, imagen:front_default, type, secondType})
         }
     }
     return pokeInfo;

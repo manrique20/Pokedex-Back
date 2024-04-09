@@ -15,6 +15,7 @@ export class User_teamController {
 
   @Get(":id")
   async encontrarUsuarioYEquipoPorId(
+    
     @Param("id") id: number,
   ): Promise<User_TeamDto | undefined> {
     try {
@@ -34,7 +35,6 @@ export class User_teamController {
       }
       
       const pokemonDetailsApi=await pokemonDetails(list)
-      console.log(pokemonDetailsApi);
       const returnedData = { 
         id:user.id,
         nombre:user.nombre,
@@ -43,9 +43,10 @@ export class User_teamController {
       }
       return returnedData;
     } catch (error) {
-      // Manejar cualquier error que pueda ocurrir durante la búsqueda de usuario, equipo o lista
       console.error("Error:", error);
       return undefined;
     }
   }
+
+  
 }
