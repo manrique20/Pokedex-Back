@@ -37,6 +37,7 @@ export class User_teamController {
       const pokemonDetailsApi=await pokemonDetails(list)
       const returnedData = { 
         id:user.id,
+        trainer_id: list.trainer_id,
         nombre:user.nombre,
         email:user.email,
         pokemonDetailsApi

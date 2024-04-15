@@ -7,10 +7,12 @@ https://docs.nestjs.com/modules
 
 import { Module } from "@nestjs/common";
 import { ListController } from "./list.controller";
+import { TeamService } from "src/pokemon_team_entity/team.service";
+import { TeamModule } from "src/pokemon_team_entity/team.module";
 
 @Module({
-  imports: [TypeOrmModule.forFeature([List_pokemon_teamsEntity])],
+  imports: [TypeOrmModule.forFeature([List_pokemon_teamsEntity]), TeamModule],
   controllers: [ListController],
-  providers: [ListService],
+  providers: [ListService, TeamService],
 })
 export class ListModule {}

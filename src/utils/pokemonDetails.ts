@@ -3,14 +3,14 @@
 //https://pokeapi.co/api/v2/pokemon/:id/
 
 import axios from "axios";
-async function pokemonDetails(pokemonsTeam): Promise<any> {
+import { List_pokemon_teamsEntity } from "src/list_pokemon_teams/list.entity";
+async function pokemonDetails(pokemonsTeam: List_pokemon_teamsEntity): Promise<any> {
   try {
     const pokeInfo = []
     for (const clave in pokemonsTeam) {
-      if (clave !== "id" && pokemonsTeam.hasOwnProperty(clave)) {
+      if ((clave !== "id" && clave!== "trainer_id") && pokemonsTeam.hasOwnProperty(clave)) {
           const valor = pokemonsTeam[clave];
-          // Realiza la acción que deseas con cada par clave-valor excepto 'id'
-          const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${valor}`);
+          const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${valor}`, { timeout: 10000 });
           const responseData = response.data;
           const {name, id, cries:{latest}, sprites:{front_default}, types} = responseData;
           const typeNames = types.map((type) => type.type.name);

@@ -6,7 +6,7 @@ import { PokemonDto } from './pokedex.interface'; // Importa la interfaz Pokemon
 export class PokedexService {
   async fetchPokemons(): Promise<any[]> {
     try {
-      const response = await axios.get('https://pokeapi.co/api/v2/pokemon/?limit=151');
+      const response = await axios.get('https://pokeapi.co/api/v2/pokemon/?limit=151', { timeout: 10000 });
       return response.data.results;
     } catch (error) {
       throw error;
