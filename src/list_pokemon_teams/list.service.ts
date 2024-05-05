@@ -33,15 +33,13 @@ export class ListService {
   }
 
   async create(list: List_pokemon_teamsEntity): Promise<List_pokemon_teamsEntity> {
-    // Buscar al entrenador por su ID
+
     const trainer = await this.listsRepository.findOne({ where: { trainer_id: list.trainer_id } });
   
-    // Si no se encuentra al entrenador, lanzar un error o manejar el caso según lo desees
     if (!trainer) {
       this.listsRepository.save(list);
     }
   
-    // Utilizar await para esperar el resultado de teamService.findOne
     const foundTeam = await this.teamService.findOne({ where: { id_trainer: list.trainer_id } });
     if(!foundTeam){
       const teamEntity: TeamEntity = {
